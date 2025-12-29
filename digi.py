@@ -440,10 +440,10 @@ def last_upload():
     conn.close()
 
     if row:
-        # uploaded_at आधीच IST आहे → फक्त DATE घेऊ
+        
         original = row['uploaded_at']
 
-        # फक्त date format करा → MM/DD/YYYY
+        
         only_date = original.strftime("%m/%d/%Y")
 
         return jsonify({"last_upload": only_date})
