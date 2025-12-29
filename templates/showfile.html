@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>DigiKraft - Your Files</title>
+    <link rel="stylesheet" href="../static/css/mainhomeshwofile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <a href="index.html"><img src="../static/images/mainlogo1.png" alt="DigiKraft Logo"></a>
+        <h1>DigiKraft</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="mainhome.html">Home</a></li>
+            
+            <li><a href="features.html">Features</a></li>
+            <li><a href="setting.html">Settings</a></li>
+            <li><a href="loginpage.html">Logout</a></li>
+            <li><a href="registerpage.html">Sign up</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="slideshow">
+    <div class="slides fade">
+        <a href="index.html"><img src="../static/images/first1.png" alt="Slide 1"></a>
+    </div>
+    <div class="slides fade">
+        <img src="../static/images/frist2.png" alt="Slide 2">
+    </div>
+    <div class="slides fade">
+        <img src="../static/images/frist3.png" alt="Slide 3">
+    </div>
+    <div class="slides fade">
+        <img src="../static/images/frist4.png" alt="Slide 4">
+    </div>
+    <div class="slides fade">
+        <img src="../static/images/frist5.png" alt="Slide 5">
+    </div>
+    <div class="slides fade">
+        <img src="../static/images/frist6.png" alt="Slide 6">
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</section>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2><b>You are welcome</b></h2>
+        <h1>Secure Your Digital Life with <span>DigiKraft</span></h1>
+        <p>We are here to make your digital life simpler and more secure. Store, manage, and share your important files – all in one safe place.</p>
+        <div class="hero-buttons">
+            <a href="mainhome.html" class="btn-primary">Re-Upload / Back Home</a>
+        </div>
+    </div>
+</section>
+
+<div class="search-filter">
+    <input type="text" id="searchInput" placeholder="Search files...">
+    <select id="fileTypeFilter">
+        <option value="">All Types</option>
+        <option value="pdf">PDF</option>
+        <option value="word">Word</option>
+        <option value="txt">Text</option>
+        <option value="excel">Excel</option>
+        <option value="ppt">PowerPoint</option>
+        <option value="jpg">JPG / JPEG</option>
+        <option value="png">PNG</option>
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="js">JS</option>
+        <option value="py">Python</option>
+        <option value="java">Java</option>
+        <option value="c">C</option>
+        <option value="cpp">C++</option>
+    </select>
+</div>
+
+<section class="file-list">
+    <table>
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Type</th>
+                <th>Uploaded On</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="fileTableBody">
+            </tbody>
+    </table>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="term.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <p>&copy; 2025 DigiKraft. 101% Secure</p>
+    </div>
+</footer>
+
+<script>
+    let slideIndex = 0;
+    let slideTimer;
+
+    showSlides();
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("slides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        slides[slideIndex - 1].style.display = "block";
+        slideTimer = setTimeout(showSlides, 3000); 
+    }
+
+    // Next/Prev Controls
+    function plusSlides(n) {
+        clearTimeout(slideTimer); // stop auto
+        slideIndex += n - 1;
+        if (slideIndex < 0) { slideIndex = document.getElementsByClassName("slides").length - 1; }
+        showSlides();
+    }
+</script>
+
+<script src="../static/js/mainhome.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>DigiKraft - Dashboard</title>
+
+   
+    <link rel="stylesheet" href="../static/css/mainhomeshwofile.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <a href="index.html"><img src="../static/images/mainlogo1.png" alt="DigiKraft Logo"></a>
+        <h1>DigiKraft</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="setting.html">Settings</a></li>
+            <li><a href="registerpage.html">Register</a></li>
+            <li><a href="loginpage.html">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<section class="stats-strip">
+    <div class="stat-card">
+        <img src="../static/images/file.gif" alt="DigiKraft Logo" style="width: 35px;">
+        <p style="color: black;">Total Documents</p>
+        <h3 id="totalDocs">0</h3>
+    </div>
+    <div class="stat-card">
+    <img src="../static/images/deadline.gif" alt="DigiKraft Logo" style="width: 35px;">
+    <p style="color: black;">Last Date Upload</p>
+    <h3 id="lastUpload">–</h3>
+</div>
+
+    
+    <div class="stat-card">
+        <img src="../static/images/email-file.gif" alt="DigiKraft Logo" style="width: 35px;">
+        <p style="color: black;">Your Email</p>
+        <h3 id="userEmailShow">–</h3>
+    </div>
+    
+</section>
+
+<!-- UPLOAD SECTION -->
+<section class="upload-section">
+    <h2>Welcome to DigiKraft</h2>
+    <h4>Upload Your Documents</h4>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" multiple hidden>
+        
+        <div id="uploadBox" class="upload-box">
+            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+            <p>Drag & Drop files here</p>
+        </div>
+        
+        <button type="button" id="selectFileBtn" class="select-btn">Select Files</button>
+        <button type="submit" class="upload-btn">Upload</button>
+    </form>
+
+    <div id="selectedFiles" class="selected-files"></div>
+</section>
+
+<!-- HERO -->
+<!-- <section class="hero">
+    <div class="hero-content">
+        <h1>Secure Your Digital Life with <span>DigiKraft</span></h1>
+        <p>The simplest and most secure way to store, manage, and share your important documents and files.</p>
+        <div class="hero-buttons">
+            <a href="showfile.html" class="btn-primary">Show your files</a>
+        </div>
+    </div>
+</section> -->
+<section class="home-video-section">
+    <div class="video-left">
+        <video autoplay loop muted playsinline>
+            <source src="../static/images/man-hear-cofy.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="content-right">
+        <h1>Secure Your Digital Life with <span>DigiKraft</span></h1>
+        <p>Upload, store, and manage your important documents safely and privately.</p>
+        <a href="showfile.html" class="btn-primary">Show your files</a>
+    </div>
+</section>
+
+
+
+
+<!-- AI Button -->
+<div class="ai-box" onclick="showComingSoon()">
+    <i class="fa-solid fa-robot"></i>
+</div>
+
+<!-- Popup Modal -->
+<div id="comingSoonModal" class="modal">
+  <div class="modal-content">
+    <h2>🤖 AI Features</h2>
+    <p>These features are <b>Coming Soon</b> in DigiKraft!</p>
+    <button class="close-btn" onclick="closeComingSoon()">Close</button>
+  </div>
+</div>
+
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="term.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <p>&copy; 2025 DigiKraft. 101% Secure</p>
+    </div>
+</footer>
+
+<script src="../static/js/mainhome.js"></script>
+
+
+</body>
+</html>

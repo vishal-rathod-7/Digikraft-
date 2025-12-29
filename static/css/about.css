@@ -1,0 +1,130 @@
+/* --- Global Styles --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- Header and Navigation --- */
+.navbar {
+     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    position: sticky;
+    top: 0;
+
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.logo h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #551a8b;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #551a8b;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #FFC107;
+}
+
+/* --- About Us Section --- */
+.about-container {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically on small screens */
+    align-items: center;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.about-container .logo {
+    height: 100px; /* Adjust size of the central logo */
+    margin-bottom: 20px;
+}
+
+.about-content h2 {
+    font-size: 2.5em;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.about-content p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: justify; /* Aligns text for better readability */
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 50px;
+}
+
+/* --- Responsive Design (Media Queries) --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 20px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .about-container {
+        margin: 30px 5%;
+        padding: 15px;
+    }
+
+    .about-content h2 {
+        font-size: 2em;
+    }
+
+    .about-content p {
+        font-size: 0.9em;
+    }
+}

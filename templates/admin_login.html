@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>DigiKraft Admin Login</title>
+    <link rel="stylesheet" href="../static/css/admin_login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <img src="../static/images/mainlogo1.png" alt="DigiKraft logo">
+        <h1>DigiKraft Admin</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="admin_login.html">Admin Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="login-wrapper">
+    <div class="login-container">
+
+        <div class="left-panel">
+            <img src="../static/images/mainlogo2.png" alt="DigiKraft Logo">
+            <h2>Welcome Admin!</h2>
+            <p>Login to access the admin dashboard and manage users & documents.</p>
+        </div>
+
+        <div class="right-panel">
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm">
+                <div class="icon-input">
+                    <input type="email" id="adminEmail" placeholder="Admin Email" required>
+                    <i class="fa fa-envelope"></i>
+                </div>
+                <div class="icon-input">
+                    <input type="password" id="adminPassword" placeholder="Password" required>
+                    <i class="fa fa-lock"></i>
+                </div>
+                <div class="captcha-container">
+                    <div class="captcha-image-wrapper">
+                        <span id="adminCaptchaQuestion" class="math-question"></span>
+                        <i class="fas fa-redo refresh-captcha" onclick="generateAdminCaptcha()"></i>
+                    </div>
+                    <input type="text" id="adminCaptchaInput" placeholder="Write the answer here" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<footer>&copy; 2025 DigiKraft. All Rights Reserved.</footer>
+
+<script>
+let generatedAdminCaptcha = 0;
+
+function generateAdminCaptcha() {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    generatedAdminCaptcha = num1 + num2;
+    document.getElementById("adminCaptchaQuestion").textContent = `${num1} + ${num2} = ?`;
+    document.getElementById("adminCaptchaInput").value = "";
+}
+
+window.onload = generateAdminCaptcha;
+
+document.getElementById("adminLoginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("adminEmail").value;
+    const password = document.getElementById("adminPassword").value;
+   const captchaInput = parseInt(document.getElementById("adminCaptchaInput").value.trim(), 10);
+if (isNaN(captchaInput) || captchaInput !== generatedAdminCaptcha) {
+    Swal.fire({
+        icon: "error",
+        title: "CAPTCHA Error",
+        text: "Incorrect answer. Please try again."
+    });
+    generateAdminCaptcha();
+    return;
+}
+    fetch("http://127.0.0.1:5000/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email, password: password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.message === "Admin Login Successful") {
+            Swal.fire({
+                title: "Welcome Admin!",
+                text: "Login Successful 🎉",
+                icon: "success",
+                confirmButtonText: "Welcome Sir",
+                confirmButtonColor: "#FFC107",
+                backdrop: `rgba(0,0,0,0.4)`
+            }).then(() => {
+                sessionStorage.setItem("adminEmail", email);
+                window.location.href = "admin_home.html";
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: data.message,
+                confirmButtonColor: "#d33"
+            });
+            generateAdminCaptcha();
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        Swal.fire({
+            icon: "error",
+            title: "Server Error",
+            text: "Please try again later."
+        });
+        generateAdminCaptcha();
+    });
+});
+</script>
+
+</body>
+</html>

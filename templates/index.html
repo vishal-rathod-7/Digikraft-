@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>DigiKraft - Secure File Storage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    
+    
+    <link rel="stylesheet" href="../static/css/home.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}"> -->
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+              <a href="admin_login.html" ><img  src="../static/images/mainlogo1.png"  alt="DigiKraft logo"> </a>
+            <h1>DigiKraft</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+                <li><a href="registerpage.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Slideshow -->
+    <section class="slideshow">
+        <div class="slides fade"><img src="../static/images/first1.png" alt="Slide 1"></div>
+        <div class="slides fade"><img src="../static/images/frist2.png" alt="Slide 2"></div>
+        <div class="slides fade"><img src="../static/images/frist3.png" alt="Slide 3"></div>
+        <div class="slides fade"><img src="../static/images/frist4.png" alt="Slide 4"></div>
+        <div class="slides fade"><img src="../static/images/frist5.png" alt="Slide 5"></div>
+        <div class="slides fade"><img src="../static/images/frist6.png" alt="Slide 6"></div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Secure Your Digital Life with <span>DigiKraft</span></h1>
+            <p>The simplest and most secure way to store, manage, and share your important documents and files.</p>
+            <div class="hero-buttons">
+                <a href="loginpage.html" class="btn-primary">Get Started Now</a>
+                <a href="registerpage.html" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="../static/images/mainlogo2.png" alt="DigiKraft Logo" style=".hero-image:hover{width:600px;}">
+        </div>                                                
+    </section>
+
+    <!-- Getting Started Section -->
+    <section class="getting-started-container">
+        <div class="getting-started-text">
+            <h2><b>Getting started is</b><br>quick and easy..!</h2>
+        </div>
+        <div class="steps-container">
+            <div class="step">
+                <div class="icon-circle register"><a href="registerpage.html"><i class="fas fa-user-check"></i></a></div>
+                <p>Register Yourself</p>
+            </div>
+            <div class="arrow-container"><i class="fas fa-arrow-right"></i></div>
+            <div class="step">
+                <div class="icon-circle verify"><a href="loginpage.html"><i class="fa-solid fa-fingerprint"></i></a></div>
+                <p>Verify Yourself</p>
+            </div>
+            <div class="arrow-container"><i class="fas fa-arrow-right"></i></div>
+            <div class="step">
+                <div class="icon-circle fetch"><a href="loginpage.html"><i class="fas fa-cloud-download-alt"></i></a></div>
+                <p>Fetch your Documents</p>
+            </div>
+            <div class="arrow-container"><i class="fas fa-arrow-right"></i></div>
+            <div class="step">
+                <div class="icon-circle share"><a href="loginpage.html"><i class="fas fa-external-link-alt"></i></a></div>
+                <p>View Your Documents</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-content">
+            <h3 class="about-pre-title">ABOUT DIGIKRAFT</h3>
+            <h2 class="about-title">Document Wallet to Empower Citizens</h2>
+            <p class="about-description">DigiKraft is a flagship initiative of Ministry of Electronics & IT (MeitY) under Digital India programme. DigiKraft aims at 'Digital Empowerment' of citizen by providing access to authentic digital documents to citizen's digital document wallet. DigiKraft is a secure cloud based platform for storage, sharing and verification of documents & certificates.</p>
+            <div class="about-buttons">
+                <a href="aboutpage.html" class="btn-more">More about DigiKraft</a>
+                <a href="registerpage.html" id="view-stats-btn" class="btn-stats">Join Digi family <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+      <div class="about-stats-card">
+    <div class="stat-item">
+        <i class="fas fa-users-cog"></i>
+        <h3 id="userCount" class="count-style">0</h3>
+        <p>Registered Users</p>
+    </div>
+
+    <div class="stat-item">
+        <i class="fas fa-file-invoice"></i>
+        <h3 id="docCount" class="count-style">0</h3>
+        <p>Uploads Documents</p>
+    </div>
+
+    <div class="stats-icon-circle">
+        <img src="../static/images/livefilemg.gif" alt="folder Gif" style="width:50px;">
+        <span>DigiKraft</span>
+    </div>
+</div>
+
+     <section class="dk-security">
+  <div class="security-left">
+    <img src="../static/images/database-security.gif" alt="database-security" style="width: 360px; margin-top: 25px;"> 
+  </div>
+  <div class="security-right">
+    <h2>Your Documents Are Protected</h2>
+    <p class="sec-sub">DigiKraft uses advanced digital security infrastructure to keep your documents safe.</p>
+
+    <ul>
+      <li><i class="fa-duotone fa-solid fa-user-shield" style="color: #ffc107;"></i> End-to-End Encryption for all your documents</li>
+      <li><i class="fa-solid fa-house-lock" style="color: #ffc107;"></i> Multi-Layer Secure Access System</li>
+      <li><i class="fa-solid fa-cloud-bolt" style="color: #ffc107;"></i> Auto Backup & Disaster Recovery</li>
+      <li> <i class="fa-solid fa-file-lines" style="color: #ffc107;"></i>  Verified Access — Only you control your documents</li>
+    </ul>
+  </div>
+</section>
+
+    <section class="dk-users">
+  <h2>Who Benefits from <span>DigiKraft.?</span></h2>
+
+  <div class="user-grid">
+
+    <div class="user-card">
+      <h3><i class="fa-solid fa-graduation-cap" style="color: #ffc107;"></i><P>Students</P></h3>
+      <p>Keep your marksheets, bonafide, college ID and certificates organized and safe.</p>
+    </div>
+
+    <div class="user-card">
+      <h3><i class="fa-solid fa-briefcase" style="color: #ffc107;"></i> <p>job Seekers</p></h3>
+      <p>Store resumes, experience letters and all job documents for instant access anywhere.</p>
+    </div>
+
+    <div class="user-card">
+      <h3><i class="fa-solid fa-people-roof" style="color: #ffc107;"></i><p>Citizens</P></h3>
+      <p>Always keep your Aadhaar, PAN, licenses and other personal documents ready in digital form.</p>
+    </div>
+
+  </div>
+</section>
+
+
+    </section>
+    <section class="about-section">
+        <div class="about-content">
+            <h3 class="about-pre-title">Documents infomention</h3>
+            <p class="about-description"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome! To apply for government or identity-related services, certain documents are mandatory. 
+        For example, <strong>Aadhaar Card</strong> is required as identity proof, birth proof, and address proof. 
+        <strong>PAN Card</strong> is used for tax-related purposes and also serves as identity and address proof. 
+        Similarly, Voter ID, Passport, Driving Licence, and various certificates like Caste Certificate, 
+        Income Certificate, and Birth Certificate are necessary depending on the service. 
+        These documents ensure proper verification and smooth processing of your applications. 
+    </p>
+    <p>
+        To see the complete list of documents and what is required to apply for each, 
+        click the button below:
+    </p>
+            <div class="about-buttons">
+                <a href="docunfo.html" class="btn-more" style="margin-top: 15px;">View Documents</a>
+            
+            </div>
+        </div>
+        
+    </section>
+    
+    <section class="features">
+        <h2>Why Choose DigiKraft?</h2>
+        
+        <div class="features-container">
+            <div class="feature-card"><i class="fas fa-lock icon"></i><h3>End-to-End Encryption</h3><p>Your files are encrypted from the moment you upload them, ensuring complete privacy.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-cloud-upload-alt icon"></i><h3>Blazing Fast Uploads</h3><p>Experience lightning-fast speeds, even with large files. No more waiting.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-users icon"></i><h3>Easy Collaboration</h3><p>Securely share files and folders with others, and manage access with ease.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-mobile-alt icon"></i><h3>Access Anywhere</h3><p>Access your files from any device, anywhere in the world. Your data is always with you.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+        </div>
+    </section>
+    
+     
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="term.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <p>&copy; 2025 DigiKraft. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Slideshow JS -->
+    <script>
+let slideIndex = 0;
+let slideTimer;
+let statsAnimated = false; // animation only once
+
+function showSlides() {
+    let slides = document.getElementsByClassName("slides");
+    for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+    slideIndex++;
+    if(slideIndex>slides.length) slideIndex=1;
+    slides[slideIndex-1].style.display="block";
+    slideTimer=setTimeout(showSlides,3200);
+}
+
+function plusSlides(n){
+    clearTimeout(slideTimer);
+    slideIndex += n-1;
+    if(slideIndex<0) slideIndex=document.getElementsByClassName("slides").length-1;
+    showSlides();
+}
+
+// Counter Animation
+function animateCounter(id, target) {
+    let count = 0;
+    let speed = Math.max(20, 1500 / target);
+
+    let update = setInterval(() => {
+        count++;
+        document.getElementById(id).innerText = count;
+        if (count >= target) clearInterval(update);
+    }, speed);
+}
+
+// Fetch + Animate only when visible
+function triggerStatsAnimation() {
+    if (statsAnimated) return;
+    statsAnimated = true;
+
+    fetch("http://localhost:5000/count_users")
+        .then(res => res.json())
+        .then(data => animateCounter("userCount", data.total_users));
+
+    fetch("http://localhost:5000/count_documents")
+        .then(res => res.json())
+        .then(data => animateCounter("docCount", data.total_docs));
+}
+
+// Observe When Stats Card is in View
+const target = document.querySelector(".about-stats-card");
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            triggerStatsAnimation();
+        }
+    });
+}, { threshold: 0.5 });
+
+observer.observe(target);
+
+window.onload = showSlides;
+
+    </script>
+</body>
+</html>

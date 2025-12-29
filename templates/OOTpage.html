@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>DigiKraft OTP Verification</title>
+   <link rel="stylesheet" href="../static/css/OOTpage.css">
+
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="../static/images/mainlogo1.png" alt="DigiKraft Logo"></a>
+            <h1>DigiKraft</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+                <li><a href="registerpage.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="otp-container">
+        <div class="otp-box">
+            <h2>OTP Verification</h2>
+            <p>Enter the 6-digit OTP sent to your mobile number.</p>
+
+            <form onsubmit="return verifyOTP()">
+                <div class="otp-inputs">
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                </div>
+
+                <button type="submit">Verify OTP</button>
+            </form>
+
+            <p class="resend">Did you not receive the OTP? <a href="#">Resend again</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 DigiKraft. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function verifyOTP() {
+            alert("OTP has been verified successfully!");
+            window.location.href = "home.html"; 
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>DigiKraft Login</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    
+</head>
+<body>
+        <header class="navbar">
+        <div class="logo">
+              <img src="../static/images/mainlogo1.png" alt="DigiKraft logo">
+            <h1>DigiKraft</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+                <li><a href="registerpage.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="login-wrapper">
+        <div class="login-container">
+
+            <div class="left-panel">
+                <img src="../static/images/mainlogo2.png" alt="DigiKraft Logo">
+                <h2>Welcome Back!</h2>
+                <p>Login to access your secure files on DigiKraft.</p>
+            </div>
+
+            <div class="right-panel">
+                <h2>User Login</h2>
+                <form id="loginForm">
+                    <div class="icon-input">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="icon-input">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <i class="fa fa-lock"></i>
+                    </div>
+                    <div class="captcha-container">
+                      <div class="captcha-image-wrapper">
+                        <span id="captchaQuestion" class="math-question"></span>
+                        <i class="fas fa-redo refresh-captcha" onclick="generateCaptcha()"></i>
+                        </div>
+                        <input type="text" id="captchaInput" placeholder="Write the answer here" required>
+                     </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div class="extra-links">
+                    <a href="forgetpage.html">Forgot Password? </a> 
+                    <a href="registerpage.html">sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>&copy; 2025 DigiKraft. All Rights Reserved.</footer>
+
+    <script>
+       
+let generatedCaptchaAnswer = 0;
+
+function generateCaptcha() {
+    const num1 = Math.floor(Math.random() * 10) + 1; // Generates a random number from 1 to 10
+    const num2 = Math.floor(Math.random() * 10) + 1; // Generates another random number from 1 to 10
+    
+    generatedCaptchaAnswer = num1 + num2;
+    document.getElementById("captchaQuestion").textContent = `${num1} + ${num2} = ?`;
+    document.getElementById("captchaInput").value = ""; 
+}
+
+// Call the function on page load
+window.onload = generateCaptcha;
+
+// Handle form submission
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const captchaInput = parseInt(document.getElementById("captchaInput").value, 10);
+
+    // Validate the CAPTCHA on the client side
+    if (captchaInput !== generatedCaptchaAnswer) {
+        Swal.fire({
+            icon: "error",
+            title: "CAPTCHA Error",
+            text: "Incorrect answer. Please try again."
+        });
+        generateCaptcha(); 
+        return;
+    }
+
+    fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.message === "Login Successful") {
+            Swal.fire({
+                title: "Welcome Back!",
+                text: "Login Successful 🎉",
+                icon: "success",
+                confirmButtonText: "Go to Main Home",
+                confirmButtonColor: "#f9a825",
+                backdrop: `rgba(0,0,0,0.4)`
+            }).then(() => {
+                sessionStorage.setItem("userEmail", email);
+                window.location.href = "mainhome.html";
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: data.message,
+                confirmButtonColor: "#d33"
+            });
+            generateCaptcha(); // Regenerate CAPTCHA on login failure
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        Swal.fire({
+            icon: "error",
+            title: "Server Error",
+            text: "Please try again later."
+        });
+        generateCaptcha(); 
+    });
+});
+    </script>
+</body>
+</html>

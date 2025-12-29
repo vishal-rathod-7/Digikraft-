@@ -1,0 +1,255 @@
+/* admin.css - Amber (#FFC107) theme */
+
+/* Reset and basics */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #fff8e1; /* soft light background */
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #fdfdfd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    z-index: 1000;
+    color: #141414;
+    box-shadow: 0 4px 6px rgba(41, 39, 44, 0.1);
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar .logo img {
+    height: 50px;
+}
+
+
+.navbar .logo h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar nav ul li a {
+    text-decoration: none;
+    color: #2d3436;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.navbar nav ul li a:hover {
+    color: #ffc107;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 70px; /* below navbar */
+    left: 0;
+    width: 250px;
+    height: calc(100% - 70px);
+    background-color: #f4f7f6; 
+    padding: 20px 0;
+    color: #2d3436;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    color: #000;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+.sidebar span{
+    color: #000000;
+    font-weight: 750;
+    font-size: 30px;
+}
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #2d3436;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    transition: 0.3s;
+    border-left: 4px solid transparent;
+    border-radius: 6px;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+    font-size: medium;
+    background-color: #f4f7f6;
+    color: #5a5959;
+    border-left: 4px solid #111111; /* darker amber */
+}
+
+/* Main content */
+.content {
+    margin-left: 250px;
+    margin-top: 70px; /* below navbar */
+    padding: 20px 30px;
+    flex: 1;
+}
+
+.content .header h1 {
+    font-weight: 850;
+    margin-bottom: 25px;
+    color: #080808;
+}
+.content .header span {
+    background: linear-gradient(90deg, #f3d373, #FFC107, #3498db, #2ecc71);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    animation: slideGradient 5s linear infinite;
+}
+.content .header do{
+    font-size: larger;
+    font-weight: 800;
+}
+
+@keyframes slideGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.content .header samp{
+    color: #000;
+    font-size: larger;
+    font-weight: 800;
+}
+.stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stats .card {
+    flex: 1;
+    background-color: #fff9c4; /* very light yellow */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.stats .card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.stats .card h3 {
+    margin-bottom: 10px;
+    color: #FFC107;
+}
+
+.stats .card p {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    margin-bottom: 15px;
+    color: #FF9800; 
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+thead {
+    background-color: #FFC107;
+    color: #2d3436;
+}
+
+thead th {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ffe082;
+}
+
+tbody tr:hover {
+    background-color: #fff8e1;
+}
+
+/* Delete button */
+.delete-btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: #ff6f00;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #ff8f00;
+}
+
+/* Hidden class */
+.hidden {
+    display: none;
+}
+
+/* Scrollbars */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #FFC107;
+    border-radius: 10px;
+}

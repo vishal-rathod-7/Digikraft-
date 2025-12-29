@@ -1,0 +1,140 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 90%;
+  background-color: #eee8e6;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background: #fff;
+  color: #080808;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header .logo img {
+  height: 50px;
+}
+
+header h1 {
+  font-size: 22px;
+}
+
+header nav ul {
+
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+header nav ul li a {
+  color: #070707;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+  color: #ffc107;
+}
+
+/* Contact Container */
+.contact-container {
+  display: flex;
+  max-width: 600px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Left Panel */
+.contact-info {
+  margin: 30px;
+  flex: 1;
+  background: #fff;
+  color: #070707;
+  padding: 40px 30px;
+}
+
+.contact-info h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #ffc107;
+}
+
+.contact-info p {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #f1d166;
+}
+
+.info-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.info-box i {
+  margin-right: 12px;
+  font-size: 18px;
+  color: #ffc107;
+}
+
+.social-links {
+  margin-top: 20px;
+}
+.contact-info a {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 20px;
+  color: #080808;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.contact-info a:hover {
+  color: #ffc107;
+  transform: scale(1.2);
+}
+
+
+.social-links a {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 20px;
+  color: #080808;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-links a:hover {
+  color: #ffc107;
+  transform: scale(1.2);
+}
+
+/* Footer */
+footer{
+  padding: 30px 50px;
+  background:#2c2c2c; 
+  text-align:center; 
+  padding:10px; 
+  color:#a0a0a0; font-size:13px; 
+  box-shadow:0 -2px 6px 
+  rgba(0,0,0,0.1);
+}

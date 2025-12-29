@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Admin Profile - DigiKraft</title>
+    <link rel="stylesheet" href="../static/css/adminprofile.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<header class="navbar">
+    <div class="logo">
+        <img src="../static/images/mainlogo1.png" alt="DigiKraft logo">
+        <h1>DigiKraft Admin</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="adminprofile.html" class="active">Profile</a></li>
+            <li><a href="admin_login.html">login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="profile-wrapper">
+    <div class="profile-container">
+        <h2>Admin Profile</h2>
+        <form id="profileForm">
+            <div class="input-group">
+                <label for="adminName">Name</label>
+                <input type="text" id="adminName" required>
+            </div>
+            <div class="input-group">
+                <label for="adminEmail">Email</label>
+                <input type="email" id="adminEmail" required>
+            </div>
+            <div class="input-group">
+                <label for="adminRole">Role</label>
+                <input type="text" id="adminRole" disabled>
+            </div>
+            <div class="input-group">
+                <label for="adminPassword">Password (leave blank if not changing)</label>
+                <input type="password" id="adminPassword">
+            </div>
+            <button type="submit">Save / Update</button>
+        </form>
+    </div>
+</div>
+
+<footer>&copy; 2025 DigiKraft. All Rights Reserved.</footer>
+
+<script>
+// Fetch current admin info on page load
+window.onload = function() {
+    fetch("http://127.0.0.1:5000/admin/profile")
+    .then(res => res.json())
+    .then(data => {
+        if(data.admin){
+            document.getElementById("adminName").value = data.admin.name;
+            document.getElementById("adminEmail").value = data.admin.email;
+            document.getElementById("adminRole").value = data.admin.role;
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+// Handle form submission
+document.getElementById("profileForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const name = document.getElementById("adminName").value;
+    const email = document.getElementById("adminEmail").value;
+    const password = document.getElementById("adminPassword").value;
+
+    fetch("http://127.0.0.1:5000/admin/profile_update", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({name, email, password})
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.message === "Profile Updated"){
+            Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: "Profile Updated Successfully!"
+            });
+            document.getElementById("adminPassword").value = ""; // Clear password field
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message
+            });
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        Swal.fire({icon:"error", title:"Server Error", text:"Try again later."});
+    });
+});
+</script>
+</body>
+</html>

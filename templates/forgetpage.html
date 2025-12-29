@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+    <title>Forgot Password - DigiKraft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #FFC107;
+            --secondary-color: #2c3e50;
+            --background-color: #f4f7f6;
+            --card-bg-color: #ffffff;
+            --text-color-dark: #333333;
+            --text-color-light: #ffffff;
+            --button-primary-hover: #e0ac00;
+        }
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            background-color: var(--card-bg-color);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: clamp(24px, 5vw, 32px);
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+        }
+
+        p {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        /* Input Field Styling */
+        .icon-input {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .icon-input input {
+            width: 100%;
+            padding: 15px;
+            padding-right: 45px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .icon-input input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 193, 7, 0.3);
+        }
+
+        .icon-input i {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        /* Button Styling */
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-color-dark);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--button-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .message {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <h2 id="form-title">Forgot Password</h2>
+        <p id="form-subtitle">Enter your details to verify your account.</p>
+
+        <form id="verifyForm" onsubmit="return verifyUser()">
+            <div class="message" id="errorMsg"></div>
+
+            <div class="icon-input">
+                <input type="email" id="email" placeholder="Enter your email" required />
+                <i class="fa fa-envelope"></i>
+            </div>
+
+            <div class="icon-input">
+                <input type="date" id="dob" required />
+                <i class="fa fa-calendar"></i>
+            </div>
+
+            <button type="submit">Verify Account</button>
+        </form>
+
+        <form id="resetForm" class="hidden" onsubmit="return resetPassword()">
+            <div class="icon-input">
+                <input type="password" id="newPassword" placeholder="New Password" required />
+                <i class="fa fa-lock"></i>
+            </div>
+            <div class="icon-input">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+                <i class="fa fa-lock"></i>
+            </div>
+            <button type="submit">Reset Password</button>
+        </form>
+
+        <a href="loginpage.html" style="display: block; margin-top: 20px; font-size: 14px; color: #555; text-decoration: none;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Login
+        </a>
+    </main>
+
+    <script>
+        const formTitle = document.getElementById('form-title');
+        const formSubtitle = document.getElementById('form-subtitle');
+
+        function verifyUser() {
+            const emailInput = document.getElementById('email').value.trim();
+            const dobInput = document.getElementById('dob').value;
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.textContent = "";
+
+            fetch("http://127.0.0.1:5000/verify_user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: emailInput, dob: dobInput })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    formTitle.textContent = "Reset Password";
+                    formSubtitle.textContent = "Enter your new password below.";
+                    document.getElementById('verifyForm').classList.add('hidden');
+                    document.getElementById('resetForm').classList.remove('hidden');
+                    document.getElementById('resetForm').dataset.email = emailInput;
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Verification Failed',
+                        text: 'Email or Date of Birth is incorrect. Please try again.',
+                        customClass: {
+                            popup: 'swal-popup-custom'
+                        }
+                    });
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Server Error',
+                    text: 'Something went wrong. Please try again later.',
+                });
+            });
+
+            return false;
+        }
+
+        function resetPassword() {
+            const newPass = document.getElementById('newPassword').value;
+            const confirmPass = document.getElementById('confirmPassword').value;
+            const email = document.getElementById('resetForm').dataset.email;
+
+            if (newPass !== confirmPass) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Passwords Mismatch',
+                    text: 'New password and confirm password do not match.',
+                });
+                return false;
+            }
+
+            fetch("http://127.0.0.1:5000/reset_password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email, password: newPass })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Password reset successful. You can now log in.',
+                        confirmButtonText: 'Go to Login'
+                    }).then(() => {
+                        window.location.href = "loginpage.html";
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Failed to reset password. Please try again.',
+                    });
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Server Error',
+                    text: 'Something went wrong. Please try again later.',
+                });
+            });
+
+            return false;
+        }
+    </script>
+</body>
+</html>

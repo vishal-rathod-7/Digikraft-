@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>DigiKraft Features</title>
+    <link rel="stylesheet" href="../static/css/features.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="../static/images/mainlogo1.png" alt="DigiKraft Logo">
+            <h1>DigiKraft</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+                <li><a href="registerpage.html">Register</a></li>          
+            </ul>
+        </nav>
+    </header>
+
+    <section class="slideshow">
+        <div class="slides fade">
+            <img src="../static/images/first1.png" alt="File upload and storage interface">
+        </div>
+        <div class="slides fade">
+            <img src="../static/images/frist2.png" alt="Secure file sharing with a lock icon">
+        </div>
+        <div class="slides fade">
+            <img src="../static/images/frist3.png" alt="Cloud backup visualization">
+        </div>
+        <div class="slides fade">
+            <img src="../static/images/frist4.png" alt="File organization with folders">
+        </div>
+        <div class="slides fade">
+            <img src="../static/images/frist5.png" alt="Real-time collaboration on documents">
+        </div>
+        <div class="slides fade">
+            <img src="../static/images/frist6.png" alt="Mobile access to files and documents">
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </section>
+
+    <section class="features-header">
+        <h4>Powerful Features of <span>DigiKraft</span></h4>
+        <p>Secure, Fast, and Reliable – Everything you need in a digital document system.</p>
+    </section>        
+            
+    <section class="features">
+        <h2>Why Choose DigiKraft?</h2>
+        <div class="features-container">
+            <div class="feature-card"><i class="fas fa-lock icon"></i><h3>End-to-End Encryption</h3><p>Your files are encrypted from the moment you upload them, ensuring complete privacy.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-users icon"></i><h3>End-to-End Encryption</h3><p>Your files are secured with military-grade encryption – only you have access.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-cloud-upload-alt icon"></i><h3>Blazing Fast Uploads</h3><p>Experience lightning-fast speeds, even with large files. No more waiting.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-bolt icon"></i><h3>Blazing Fast Upload</h3><p>Enjoy lightning-fast uploads and access from anywhere in the world.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-user-shield icon"></i><h3>Role-Based Sharing</h3><p>Share your files with different users with full control over permissions.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-database icon"></i><h3>Cloud Backup</h3><p>Automatically backup your documents securely in the cloud.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-mobile-alt icon"></i><h3>Mobile Access</h3><p>Access your data securely from any device, anytime.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-file-shield icon"></i><h3>Privacy Protection</h3><p>We never track or sell your data. Full privacy guaranteed.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-users icon icon"></i><h3>Easy Collaboration</h3><p>Securely share files and folders with others, and manage access with ease.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+            <div class="feature-card"><i class="fas fa-mobile-alt icon"></i><h3>Access Anywhere</h3><p>Access your files from any device, anywhere in the world. Your data is always with you.</p><div class="coming-soon-tag">DigiKraft – Coming Soon</div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="term.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <p>&copy; 2025 DigiKraft. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        let slideTimer;
+
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("slides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            slideTimer = setTimeout(showSlides, 3000); // Auto change every 3 sec
+        }
+
+        function plusSlides(n) {
+            clearTimeout(slideTimer);
+            slideIndex += n - 1;
+            if (slideIndex < 0) { slideIndex = document.getElementsByClassName("slides").length - 1; }
+            showSlides();
+        }
+    </script>
+</body>
+</html>

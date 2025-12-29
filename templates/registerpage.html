@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=0.5" />
+  <title>DigiKraft Register</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="../static/css/registerpage.css" />
+  <!--alert from-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+
+  <!-- Header -->
+      <header class="navbar">
+        <div class="logo">
+              <img src="../static/images/mainlogo1.png" alt="DigiKraft logo">
+            <h1>DigiKraft</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+                <li><a href="registerpage.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <!-- Main Register Box -->
+  <div class="register-wrapper">
+    <div class="register-container">
+
+      <!-- Left Panel -->
+      <div class="left-panel">
+        <img src="../static/images/mainlogo2.png" alt="DigiKraft Logo">
+        <h2>DigiKraft</h2>
+        <p>Safe. Secure. Trusted File Storage Platform.</p>
+    
+      </div>
+
+      <!-- Right Panel -->
+      <div class="right-panel">
+        <h2>Create Your Account</h2>
+        <h6>Fill the form with your information</h6>
+
+        <form id="registerForm" autocomplete="off">
+          <div class="icon-input">
+            <input id="name" name="name" type="text" placeholder="Full Name" required>
+            <i class="fa fa-user"></i>
+          </div>
+
+          <div class="icon-input">
+            <input id="email" name="email" type="email" placeholder="Gmail Address" required="{@}">
+            <i class="fa fa-envelope"></i>
+          </div>
+
+          <div class="icon-input">
+            <input id="phone" name="phone" type="tel" placeholder="Mobile Number" required pattern="[0-9]{10}">
+            <i class="fa fa-phone"></i>
+          </div>
+
+          <div class="icon-input">
+           <input type="date" id="dob" name="dob">
+            <i class="fa fa-calendar"></i>
+          </div>
+<div class="icon-input">
+  <input id="password" name="password" type="password" placeholder="Password" 
+         pattern="(?=.*[0-9])(?=.*[A-Z]).{8,}" 
+         title="Password must contain at least 1 number, 1 uppercase letter and be at least 8 characters long" 
+         required>
+  <i class="fa fa-lock"></i>
+</div>
+
+
+          <button type="submit">Register</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>&copy; 2025 DigiKraft. All Rights Reserved.</footer>
+
+  <!-- JS -->
+  <script>
+  document.getElementById("registerForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  fetch("http://127.0.0.1:5000/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      fullname: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+      dob: document.getElementById("dob").value,
+      phone: document.getElementById("phone").value
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.message === "User registered successfully") {
+      // 🎉 Success popup
+      Swal.fire({
+        title: "Registration Complete!",
+        text: "Your account has been created successfully 🎉",
+        icon: "success",
+        confirmButtonText: "Go to Login",
+        confirmButtonColor: "#28a745"
+      }).then(() => {
+        window.location.href = "loginpage.html"; 
+      });
+    } else {
+      //  Error popup
+      Swal.fire({
+        title: "Oops!",
+        text: data.message,
+        icon: "error",
+        confirmButtonColor: "#d33"
+      });
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    Swal.fire({
+      title: "Server Error",
+      text: "Something went wrong. Please try again later.",
+      icon: "error"
+    });
+  });
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Govt Document Requirements </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/docuinfo.css">
+</head>
+<body>
+<header class="navbar">
+        <div class="logo">
+            <img  src="../static/images/mainlogo1.png"  alt="DigiKraft logo"> 
+            <h1>DigiKraft</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+                <li><a href="registerpage.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<header>
+    <div class="nav-wrapper">
+        <div class="logo">
+            <i class="fas fa-landmark"></i> <strong>Maha-Document Directory</strong>
+        </div>
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="docSearch" placeholder="Search documents..." onkeyup="searchDocs()">
+        </div>
+    </div>
+</header>
+
+<div class="layout">
+    <aside class="sidebar">
+        <h3>Quick Navigation</h3>
+        <a href="#id" class="cat-link"><i class="fas fa-id-card"></i> Identity & Citizenship</a>
+        <a href="#legal" class="cat-link"><i class="fas fa-file-signature"></i> Legal Certificates</a>
+        <a href="#edu" class="cat-link"><i class="fas fa-graduation-cap"></i> Education</a>
+        <a href="#work" class="cat-link"><i class="fas fa-briefcase"></i> Employment</a>
+        <a href="#bank" class="cat-link"><i class="fas fa-university"></i> Banking & Finance</a>
+        <a href="#home" class="cat-link"><i class="fas fa-house-user"></i> Property & Land</a>
+        <a href="#rto" class="cat-link"><i class="fas fa-car"></i> RTO & Transport</a>
+        <a href="#biz" class="cat-link"><i class="fas fa-balance-scale"></i> Business & Legal</a>
+    </aside>
+
+    <main id="mainContent">
+        
+        <section id="id" class="category-section">
+            <h2 class="section-title">Identity & Citizenship</h2>
+            <div class="doc-grid" id="id-grid"></div>
+        </section>
+
+        <section id="legal" class="category-section">
+            <h2 class="section-title">Birth, Caste & Legal Certificates</h2>
+            <div class="doc-grid" id="legal-grid"></div>
+        </section>
+
+        <section id="edu" class="category-section">
+            <h2 class="section-title">Education Documents</h2>
+            <div class="doc-grid" id="edu-grid"></div>
+        </section>
+
+        <section id="bank" class="category-section">
+            <h2 class="section-title">Banking & Finance</h2>
+            <div class="doc-grid" id="bank-grid"></div>
+        </section>
+
+    </main>
+</div>
+
+<script>
+    // Document Database Construction
+    const documents = [
+        // IDENTITY
+       { cat: 'id', name: 'Aadhaar Card', req: ['Proof of Birth', 'Address Proof', 'Mobile No', 'Biometric Enrollment', 'UIDAI Registration'] },
+    { cat: 'id', name: 'PAN Card', req: ['Photo', 'ID Proof', 'Date of Birth Proof', 'Father Name Proof'] },
+    { cat: 'id', name: 'Voter ID (EPIC)', req: ['Age Proof (18+)', 'Address Proof', 'Form 6', 'Passport Size Photo'] },
+    { cat: 'id', name: 'Passport', req: ['Address Proof', 'Police Verification', 'Annexures', 'Photographs', 'Birth Certificate'] },
+    { cat: 'id', name: 'Driving License', req: ['Medical Cert', 'Learning License', 'Age Proof', 'Address Proof', 'Passport Photo'] },
+    { cat: 'id', name: 'Ration Card', req: ['Income Proof', 'LPG Details', 'Old Ration Card', 'Family Details'] },
+    { cat: 'id', name: 'Senior Citizen ID Card', req: ['Age Proof (60+)', 'Residence Proof', 'Medical Report'] },
+    { cat: 'id', name: 'Disability UDID Card', req: ['Medical Authority Cert', 'Photo', 'ID Proof', 'Disability Certificate'] },
+    { cat: 'id', name: 'E-Shram Card', req: ['Aadhaar', 'Bank Details', 'Mobile No', 'Skill Details'] },
+    { cat: 'id', name: 'Police Verification Certificate', req: ['Local Reference Details', 'Address Proof', 'Purpose Letter', 'Identity Proof'] },
+
+    // LEGAL / CERTIFICATES
+    { cat: 'legal', name: 'Birth Certificate', req: ['Hospital Report', 'Parents ID', 'Marriage Certificate', 'Date of Birth Proof'] },
+    { cat: 'legal', name: 'Caste Certificate', req: ['Father/Mother\'s Caste Proof', 'School Leaving Certificate', 'Affidavit', 'Residence Proof'] },
+    { cat: 'legal', name: 'Domicile Certificate', req: ['15 Yrs Residency Proof', 'Birth Certificate', 'Ration Card', 'Voter List Copy'] },
+    { cat: 'legal', name: 'Non-Creamy Layer (NCL) Certificate', req: ['Income Proof', 'Caste Certificate', '3 Yrs ITR', 'Residence Proof'] },
+    { cat: 'legal', name: 'Marriage Certificate', req: ['Wedding Photos', 'Witness IDs', 'Invitation Card', 'Spouse ID Proof'] },
+    { cat: 'legal', name: 'Income Certificate', req: ['Salary Slips', 'Talathi Report', 'Identity Proof', 'Address Proof'] },
+    { cat: 'legal', name: 'Change of Name Gazette', req: ['ID Proof', 'Affidavit', 'Newspaper Advertisement', 'Old Certificates'] },
+
+    // EDUCATION
+    { cat: 'edu', name: 'School Leaving Certificate (TC)', req: ['Bonafide Certificate', 'Previous Year Marksheet', 'Identity Proof', 'School ID'] },
+    { cat: 'edu', name: 'Degree Certificate', req: ['All Semester Marksheets', 'Passing Certificate', 'University Fee Receipt', 'College ID Proof'] },
+    { cat: 'edu', name: 'Migration Certificate', req: ['College TC', 'Passing Certificate', 'Application Form'] },
+    { cat: 'edu', name: 'Gap Certificate', req: ['Affidavit on Stamp Paper', 'Last Passing Marksheet', 'Reason Statement'] },
+
+    // BANKING / FINANCE
+    { cat: 'bank', name: 'Income Tax Return (ITR)', req: ['Form 16', 'Bank Statement', 'Audit Report', 'PAN Card'] },
+    { cat: 'bank', name: 'Loan Agreement', req: ['Property Papers', 'Guarantor ID', 'Income Proof', 'Bank Statement'] },
+    { cat: 'bank', name: 'Cancelled Cheque', req: ['Personalized Chequebook', 'Active Bank Account', 'Account Holder ID'] },
+
+    // PROPERTY & LAND
+    { cat: 'home', name: '7/12 Extract', req: ['Survey Number', 'Owner Details', 'Revenue Department Verification'] },
+    { cat: 'home', name: 'Property Tax Receipt', req: ['Property Papers', 'Paid Receipt', 'Identity Proof'] },
+    { cat: 'home', name: 'Sale Deed', req: ['Owner ID', 'Previous Sale Deed', 'Witnesses'] },
+    { cat: 'home', name: 'Lease/Rental Agreement', req: ['Landlord ID', 'Tenant ID', 'Rental Terms', 'Witness Signatures'] },
+
+    // RTO / TRANSPORT
+    { cat: 'rto', name: 'Vehicle Registration Certificate (RC)', req: ['Form 20/21', 'Insurance Policy', 'PUC Certificate', 'Tax Receipt'] },
+    { cat: 'rto', name: 'Vehicle Insurance', req: ['RC Copy', 'Owner ID', 'Policy Application Form'] },
+    { cat: 'rto', name: 'Pollution Under Control (PUC) Certificate', req: ['Vehicle RC', 'Emission Test'] },
+
+    // BUSINESS / LEGAL
+    { cat: 'biz', name: 'Trade License', req: ['Business Address Proof', 'ID Proof', 'Application Form'] },
+    { cat: 'biz', name: 'GST Registration', req: ['PAN Card', 'Business Proof', 'Application Form'] },
+    { cat: 'biz', name: 'FSSAI License', req: ['Food Business Proof', 'ID Proof', 'Application Form'] }    ];
+
+    function renderDocs() {
+        documents.forEach(doc => {
+            const grid = document.getElementById(`${doc.cat}-grid`);
+            if(!grid) return;
+            
+            const card = document.createElement('div');
+            card.className = 'doc-card';
+            card.innerHTML = `
+                <h4>${doc.name}</h4>
+                <div class="req-list">
+                    <p style="font-size:0.8rem; font-weight:bold; color:var(--text-light); margin-bottom:5px;">Mandatory Requirements:</p>
+                    ${doc.req.map(r => `<span class="req-tag">${r}</span>`).join('')}
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function searchDocs() {
+        let input = document.getElementById('docSearch').value.toLowerCase();
+        let cards = document.getElementsByClassName('doc-card');
+        
+        for (let i = 0; i < cards.length; i++) {
+            let txt = cards[i].innerText.toLowerCase();
+            cards[i].style.display = txt.includes(input) ? "" : "none";
+        }
+    }
+
+    window.onload = renderDocs;
+</script>
+
+</body>
+</html>
