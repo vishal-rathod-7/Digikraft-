@@ -112,8 +112,8 @@ body {
     padding: 50px 20px 20px;
 }
 
-.features-header h4 {
-    font-size: 2.2em;
+.features-header h2 {
+    font-size: 60px;
     color: #1a1a1a;
     margin-bottom: 10px;
 }
