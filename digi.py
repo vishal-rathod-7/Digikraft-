@@ -449,6 +449,41 @@ def last_upload():
         return jsonify({"last_upload": only_date})
 
     return jsonify({"last_upload": "–"})
+# ------------------------- contact Massage -------------------------
+@app.route("/send-message", methods=["POST"])
+def send_message():
+    data = request.get_json()
+
+    name = data.get("name")
+    email = data.get("email")
+    subject = data.get("subject")
+    message = data.get("message")
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO contact_messages (name, email, subject, message)
+        VALUES (%s, %s, %s, %s)
+    """, (name, email, subject, message))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"message": "Message sent successfully!"})
+@app.route("/get-messages", methods=["GET"])
+def get_messages():
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("SELECT * FROM contact_messages ORDER BY id DESC")
+    data = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    return jsonify(data)
 
 # ------------------------- Run -------------------------
 if __name__ == "__main__":

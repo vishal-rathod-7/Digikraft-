@@ -216,6 +216,7 @@ nav a:hover {
       <button id="nav-docs" onclick="showSection('documents')"><i class="fa-solid fa-folder-open"></i> Documents</button>
       <button id="nav-settings" onclick="showSection('settings')"><i class="fa-solid fa-gear"></i> Settings</button>
       <div style="height:14px"></div>
+      <button onclick="MassageAdminName()" class="btn ghost"><i class="fa-solid fa-comment-dots"></i>View Messages</button>
       <button onclick="logout()" class="btn ghost"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
     </div>
   </aside>
@@ -329,7 +330,7 @@ nav a:hover {
         
         <div style="margin-top:18px" class="muted">Change password & other settings can be here.</div>
       </div>
-    </section>
+      </section>
 
   </main>
 </div>
@@ -577,6 +578,9 @@ function ForgetAdminName(){
   window.location.href = "AdminForgetpass.html";
 }
     
+function MassageAdminName(){
+  window.location.href = "admin_messages.html";
+}
 /* ============== INIT ============== */
 async function init(){
   await loadDashboard();

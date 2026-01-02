@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DigiKraft - View Messages</title>
+    <link rel="stylesheet" href="../static/css/admin_messages.css">
+</head>
+<header class="navbar">
+        <div class="logo">
+              <a href="admin_login.html" ><img  src="../static/images/mainlogo1.png"  alt="DigiKraft logo"> </a>
+            <h1>DigiKraft</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+                <li><a href="registerpage.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+<body>
+    <h1>Contact Messages</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody id="msgBody"></tbody>
+    </table>
+
+    <script>
+        async function loadMessages() {
+            let res = await fetch("http://127.0.0.1:5000/get-messages");
+            let messages = await res.json();
+
+            let body = document.getElementById("msgBody");
+            messages.forEach(msg => {
+                body.innerHTML += `
+                    <tr>
+                        <td>${msg.id}</td>
+                        <td>${msg.name}</td>
+                        <td>${msg.email}</td>
+                        <td>${msg.subject}</td>
+                        <td>${msg.message}</td>
+                        <td>${msg.date}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        loadMessages();
+    </script>
+
+</body>
+</html>

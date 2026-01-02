@@ -2,62 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DigiKraft Features</title>
-  <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  <title>DigiKraft – Contact Us</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="../static/css/contact.css">
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
-  <header>
-    <div class="logo">
-      <img src="../static/images/mainlogo1.png" alt="DigiKraft Logo">
-      <h1>DigiKraft</h1>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="features.html">Features</a></li>
-        <li><a href="loginpage.html " >Login</a></li>
-        <li><a href="registerpage.html " >Register</a></li>
-      </ul>
-    </nav>
+<header>
+  <div class="logo">
+    <img src="../static/images/mainlogo1.png" alt="Logo">
+    <h1>DigiKraft</h1>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="loginpage.html">Login</a></li>
+      <li><a href="registerpage.html">Register</a></li>
+    </ul>
+  </nav>
 </header>
-   
-   <div class="contact-container">
+
+
+<section class="contact-section">
+
+  <div class="contact-card">
     
-    <!-- Left Panel -->
-    <div class="contact-info">
-      <h2><B>Contact Us</B></h2>
-      <p>Have any questions? We’d love to hear from you.</p>
-      
-      <div class="info-box">
-        
-      <a href="https://www.google.com/maps/place/GDM+Arts,+KRN+Commerce+%26+MD+Science+College/@20.8088798,75.7689096,16.43z/data=!4m6!3m5!1s0x3bd99eebf2856495:0x3af8a157ed66141d!8m2!3d20.8091251!4d75.773036!16s%2Fg%2F11g8y9wdwm?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D"><i class="fa fa-map-marker-alt"></i></a>
-        <span>Jamner 424209, District jalgon, maharatra state, india</span>
+    <div class="left-box">
+      <h2>Get in Touch</h2>
+      <p>We are always here to help you. Reach out anytime.</p>
+
+      <div class="info-item">
+        <i class="fa fa-map-marker-alt"></i>
+        <span>Jamner, Jalgaon, Maharashtra, India - 424209</span>
       </div>
-      <div class="info-box">
-        <a href="tel:+917620867209"><i class="fa fa-phone"></i></a>
+
+      <div class="info-item">
+        <i class="fa fa-phone"></i>
         <span>+91 7620867209</span>
       </div>
-      <div class="info-box">
-      <a href="mailto:vishalerathod123@gmail.com"><i class="fa fa-envelope"></i></a>
+
+      <div class="info-item">
+        <i class="fa fa-envelope"></i>
         <span>vishalerathod92@gmail.com</span>
       </div>
 
-      <div class="social-links">
+      <div class="social">
         <a href="mailto:vishalerathod123@gmail.com"><i class="fa fa-envelope"></i></a>
         <a href="https://www.instagram.com/digikraft.in/"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-linkedin"></i></a>
       </div>
     </div>
 
-  </div>
+    <div class="right-box">
+  <h3>Send Message</h3>
 
-  <footer>
-    &copy; 2025 DigiKraft. All rights reserved.
-  </footer>
+  <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="text" id="subject" placeholder="Subject" required>
+      <textarea id="message" placeholder="Your Message..." required></textarea>
+
+      <button type="submit" id="sendBtn">Send Message</button>
+  </form>
+
+  <div id="responseMsg" class="alert"></div>
+</div>
+
+</section>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    let btn = document.getElementById("sendBtn");
+    btn.innerText = "Sending...";
+    btn.disabled = true;
+
+    let data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value
+    };
+
+    try {
+        let res = await fetch("http://127.0.0.1:5000/send-message", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+
+        let result = await res.json();
+
+        showMessage(result.message, "success");
+
+        // Clear form
+        document.getElementById("contactForm").reset();
+
+        // Auto refresh after 1.5 sec
+        setTimeout(() => location.reload(), 1500);
+
+    } catch (err) {
+        showMessage("Something went wrong! Try again.", "error");
+    }
+
+    btn.innerText = "Send Message";
+    btn.disabled = false;
+});
+
+// ========== Success / Error Message Function ==========
+function showMessage(msg, type) {
+    let box = document.getElementById("responseMsg");
+
+    box.innerText = msg;
+    box.className = "alert " + type;
+    box.style.display = "Green";
+
+    setTimeout(() => {
+        box.style.opacity = "0";
+    }, 2000);
+
+    setTimeout(() => {
+        box.style.display = "none";
+        box.style.opacity = "1";
+    }, 2500);
+}
+</script>
+
+
+<footer>
+  © 2025 DigiKraft. All Rights Reserved.
+</footer>
 
 </body>
 </html>
