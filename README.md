@@ -19,7 +19,7 @@ DigiKraft is a lightweight, fast and secure web application that allows users to
 
 ---
 
-## 🛠 Tech Used
+##  Tech Used
 
 * **Frontend:** HTML, CSS, JavaScript
 * **Backend:** Python (Flask)
@@ -28,7 +28,7 @@ DigiKraft is a lightweight, fast and secure web application that allows users to
 
 ---
 
-### 4. Run the App
+### Run the App
 
 ```bash
 python digi.py
