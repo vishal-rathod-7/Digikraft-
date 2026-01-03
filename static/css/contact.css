@@ -148,25 +148,13 @@ form button:hover {
   background: #ff9800;
 }
 .alert {
-    padding: 10px;
-    margin-top: 15px;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: 600;
     border-radius: 6px;
-    font-weight: bold;
+    margin-top: 15px;
+    transition: opacity 0.5s ease;
     display: none;
-    transition: 0.5s;
-    text-align: center;
-}
-
-.alert.success {
-    background: #d4edda;
-    color: #155724;
-    border-left: 5px solid #28a745;
-}
-
-.alert.error {
-    background: #f8d7da;
-    color: #721c24;
-    border-left: 5px solid #e3342f;
 }
 
 /* Footer */

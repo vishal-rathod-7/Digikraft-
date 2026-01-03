@@ -115,13 +115,26 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
     btn.disabled = false;
 });
 
-// ========== Success / Error Message Function ==========
+
 function showMessage(msg, type) {
     let box = document.getElementById("responseMsg");
 
     box.innerText = msg;
-    box.className = "alert " + type;
-    box.style.display = "Green";
+
+    box.className = "alert";
+
+      if (type === "success") {
+        box.style.background = "#4bf267";   
+        box.style.color = "white";
+        box.style.border = "1px solid #2e9e48";
+    } else {
+        box.style.background = "#eb3849";   
+        box.style.color = "white";
+        box.style.border = "1px solid #bf2130";
+    }
+
+    box.style.display = "block";
+    box.style.opacity = "1";
 
     setTimeout(() => {
         box.style.opacity = "0";
@@ -132,6 +145,7 @@ function showMessage(msg, type) {
         box.style.opacity = "1";
     }, 2500);
 }
+
 </script>
 
 
