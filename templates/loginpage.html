@@ -70,8 +70,8 @@
 let generatedCaptchaAnswer = 0;
 
 function generateCaptcha() {
-    const num1 = Math.floor(Math.random() * 10) + 1; // Generates a random number from 1 to 10
-    const num2 = Math.floor(Math.random() * 10) + 1; // Generates another random number from 1 to 10
+    const num1 = Math.floor(Math.random() * 10) + 1; 
+    const num2 = Math.floor(Math.random() * 10) + 1; 
     
     generatedCaptchaAnswer = num1 + num2;
     document.getElementById("captchaQuestion").textContent = `${num1} + ${num2} = ?`;
@@ -129,7 +129,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
                 text: data.message,
                 confirmButtonColor: "#d33"
             });
-            generateCaptcha(); // Regenerate CAPTCHA on login failure
+            generateCaptcha(); 
         }
     })
     .catch(err => {

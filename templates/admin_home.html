@@ -453,10 +453,7 @@ function renderDocsTable(files){
       <td>${escapeHtml(f.filename)}</td>
       <td>${formatDate(f.uploaded_at)}</td>
       <td class="right">
-  <a class="btn small" href="${API_BASE}/download_file/${f.filepath}" target="_blank" title="Preview / Download">
-    <i class="fa-solid fa-download"></i>
-  </a>        
-  <button class="btn small danger" onclick="deleteDocument(${f.id})"><i class="fa-solid fa-trash"></i></button>
+    <a style="color: #3abe4f;" <i class="fa-solid fa-shield-heart"></i>  </a>
 </td>
 
     </tr>`;
