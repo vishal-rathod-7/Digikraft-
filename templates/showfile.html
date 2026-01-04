@@ -6,6 +6,7 @@
     <title>DigiKraft - Your Files</title>
     <link rel="stylesheet" href="../static/css/mainhomeshwofile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -90,6 +91,7 @@
                 <th>Type</th>
                 <th>Uploaded On</th>
                 <th>Actions</th>
+                <th>share  </th>
             </tr>
         </thead>
         <tbody id="fileTableBody">
@@ -126,13 +128,13 @@
         slideTimer = setTimeout(showSlides, 3000); 
     }
 
-    // Next/Prev Controls
     function plusSlides(n) {
-        clearTimeout(slideTimer); // stop auto
+        clearTimeout(slideTimer);
         slideIndex += n - 1;
         if (slideIndex < 0) { slideIndex = document.getElementsByClassName("slides").length - 1; }
         showSlides();
     }
+    v
 </script>
 
 <script src="../static/js/mainhome.js"></script>

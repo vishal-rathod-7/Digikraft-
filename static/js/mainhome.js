@@ -85,8 +85,6 @@ if (selectFileBtn && fileInput && uploadForm) {
             });
     });
 }
-
-// ================== SHOW FILES (for showfiles.html) ==================
 let allFiles = []; // Store all fetched files for search/filter
 
 function loadUserFiles() {
@@ -109,26 +107,50 @@ function renderFileTable(files) {
     if (!tbody) return; 
 
     tbody.innerHTML = "";
-    files.forEach((file) => {
-        const ext = (file.filename.split(".").pop() || "").toUpperCase();
-        const uploaded = file.uploaded_at;
-        const viewUrl = `http://127.0.0.1:5000${file.url}`;
-        const downloadUrl = `http://127.0.0.1:5000/download/${file.id}`;
+files.forEach(file => {
+    const tr = document.createElement("tr");
+    const ext = file.filename.split('.').pop();
+    const uploaded = file.uploaded_at;
 
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${file.filename}</td>
-            <td>${ext}</td>
-            <td>${uploaded}</td>
-            <td>
-                <i class="fa-solid fa-eye" onclick="window.open('${viewUrl}', '_blank')"></i>
-                <i class="fas fa-download action-icon download" onclick="window.location.href='${downloadUrl}'"></i>
-                <i class="fa-regular fa-trash-can" onclick="deleteFile(${file.id})"></i>
-            </td>
-        `;
-        tbody.appendChild(tr);
-    });
+    const viewUrl = `/download_file/${file.filename}`;
+    const downloadUrl = `/download_file/${file.filename}`; // optional
+
+    tr.innerHTML = `
+        <td>${file.filename}</td>
+        <td>${ext}</td>
+        <td>${uploaded}</td>
+        <td>
+            <i class="fa-solid fa-eye" onclick="window.open('${viewUrl}', '_blank')"></i>
+            <i class="fas fa-download action-icon download" onclick="window.location.href='${downloadUrl}'"></i>
+            <i class="fa-regular fa-trash-can" onclick="deleteFile(${file.id})"></i>
+        </td>
+        <td>
+            <a href="#" onclick="shareFile('${file.filename}')" title="Share">
+                   <span style="color: #3aeb4f;" class="share-icon"><i class="fa-solid fa-share-nodes"></i></span>
+            </a>
+        </td>
+    `;
+    tbody.appendChild(tr);
+});
 }
+function shareFile(filename) {
+    const shareURL = `${window.location.origin}/download_file/${filename}`;
+
+    if (navigator.share) {
+        navigator.share({
+            title: "DigiKraft File",
+            text: "Check out this file from DigiKraft!",
+            url: shareURL
+        })
+        .then(() => console.log("Shared successfully"))
+        .catch((err) => console.error(err));
+    } else {
+        navigator.clipboard.writeText(shareURL)
+        .then(() => alert("Link copied to clipboard!\n" + shareURL))
+        .catch(err => alert("Failed to copy share link"));
+    }
+}
+
 
 // Delete file
 function deleteFile(fileId) {
