@@ -172,7 +172,7 @@ def get_files():
 
     return jsonify({"files": files})
 
-# --- dowvn load and viwe- Admin----------
+# --- dowvnload and viwe- Admin----------
 @app.route('/download_file/<path:filename>')
 def serve_upload(filename):
     if filename.startswith('uploads/'):
@@ -198,7 +198,6 @@ def download_by_id(file_id):
         abort(404)
 
     return send_from_directory(app.config['UPLOAD_FOLDER'], secure_filename(row["filename"]), as_attachment=True)
-
 # ------------------------- Delete file -------------------------
 @app.route('/delete_file/<int:file_id>', methods=['DELETE'])
 def delete_file(file_id):

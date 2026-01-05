@@ -90,8 +90,8 @@
                 <th>File Name</th>
                 <th>Type</th>
                 <th>Uploaded On</th>
-                <th>Actions</th>
-                <th>share  </th>
+                <th> Actions</th>
+                <th>share</th>
             </tr>
         </thead>
         <tbody id="fileTableBody">
@@ -134,7 +134,27 @@
         if (slideIndex < 0) { slideIndex = document.getElementsByClassName("slides").length - 1; }
         showSlides();
     }
-    v
+
+function shareFile(filename) {
+    const shareURL = `http://127.0.0.1:5000/download_file/${filename}`;
+
+    // If mobile supports native share
+    if (navigator.share) {
+        navigator.share({
+            title: "DigiKraft File",
+            text: "Download this file:",
+            url: shareURL
+        })
+        .catch(() => {});
+        return;
+    }
+
+    // Desktop — WhatsApp Web Share
+    let whatsappURL = `https://web.whatsapp.com/send?text=DigiKraft File:%0A${shareURL}`;
+    window.open(whatsappURL, "_blank");
+}
+
+
 </script>
 
 <script src="../static/js/mainhome.js"></script>
