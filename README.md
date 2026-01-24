@@ -31,7 +31,7 @@ DigiKraft is a lightweight, fast and secure web application that allows users to
 ### Run the App
 
 ```bash
-python digi.py
+python app.py
 ```
 
 ---
